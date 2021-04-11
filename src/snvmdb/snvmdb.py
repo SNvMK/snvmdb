@@ -1,6 +1,9 @@
-import json
 import os
 from typing import Any, List, Dict, NoReturn
+try:
+    import ujson as json
+except ImportError:
+    import json
 
 from .errors import (
     DatabaseNotFoundError,
@@ -15,6 +18,7 @@ class SnvmDB:
     Simple and easy-to-use database. Yes, JSON database. I want to make it, and I made.
     """
     def __init__(self, filename: str, auto_sync: bool = False):
+        self.json = json
         self.auto_sync = auto_sync
         if not filename == 'memory':
             location = os.path.expanduser(filename)
@@ -25,6 +29,13 @@ class SnvmDB:
                 raise DatabaseNotFoundError('Can\'t find database file.')
         else:
             self.db = {}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, ex, ex_val, ex_tb):
+        self.__autosync()
+        return True
 
     def __load(self):
         """

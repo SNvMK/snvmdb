@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name="snvmdb",
-    version="1.0.0",
+    version="1.1.0",
     author="SNVMK",
     author_email="sidzahroman@gmail.com",
     description="Simple database tool",
@@ -15,6 +15,8 @@ setuptools.setup(
     url="https://github.com/snvmk/snvmdb",
     project_urls={
         "Bug Tracker": "https://github.com/snvmk/snvmdb/issues",
+        "Documentation": "https://github.com/SNvMK/snvmdb/wiki",
+        "Discussions": "https://github.com/SNvMK/snvmdb/discussions"
     },
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -24,4 +26,7 @@ setuptools.setup(
     packages=setuptools.find_packages(where="src"),
     package_dir={"": "src"},
     python_requires=">=3.5",
+    extras_require={
+        'speedup': ['ujson']
+    }
 )
