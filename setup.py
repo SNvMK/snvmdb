@@ -1,11 +1,12 @@
 import setuptools
+from snvmdb import __version__
 
 with open('README.md', 'r') as f:
     long_description = f.read()
 
 setuptools.setup(
     name="snvmdb",
-    version="1.1.0",
+    version=__version__,
     author="SNVMK",
     author_email="sidzahroman@gmail.com",
     description="Simple database tool",
@@ -23,8 +24,8 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    packages=setuptools.find_packages(where="src"),
-    package_dir={"": "src"},
+    packages=setuptools.find_packages(where="."),
+    package_dir={"": "."},
     python_requires=">=3.5",
     extras_require={
         'speedup': ['ujson']
